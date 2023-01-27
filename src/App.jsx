@@ -4,7 +4,7 @@ import Terminal from './components/Terminal';
 
 const App = () => {
 	return (
-		<div className="font-mono h-screen w-screen bg-gray-900 text-gray-100">
+		<div className="font-mono h-screen w-screen max-h-screen max-w-screen bg-gray-900 text-gray-100">
 			<Header />
 			<Terminal />
 		</div>

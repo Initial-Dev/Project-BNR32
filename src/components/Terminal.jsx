@@ -5,6 +5,7 @@ const Terminal = () => {
 	const [output, setOutput] = useState([]);
 
 	const inputRef = useRef(null);
+	const outputRef = useRef(null);
 
 	useEffect(() => {
 		document.addEventListener('click', () => {
@@ -34,20 +35,56 @@ const Terminal = () => {
 
 			switch (command) {
 				case 'help':
-					newOutput = <p>help: Shows available commands</p>;
+					newOutput = (
+						<div>
+							<br />
+							<p>
+								<span className="drop-shadow-cmd text-red-600">
+									about
+								</span>{' '}
+								displays a short paragraph about what is
+								InitialDev.
+							</p>
+							<br />
+							<p>
+								<span className="drop-shadow-cmd text-red-600">
+									team
+								</span>{' '}
+								displays a profile of each of our dear team
+								members.
+							</p>
+							<br />
+							<p>
+								<span className="drop-shadow-cmd text-red-600">
+									contact
+								</span>{' '}
+								displays our email address so that you can
+								directly contact us.
+							</p>
+							<br />
+							<p>
+								<span className="drop-shadow-cmd text-red-600">
+									social
+								</span>{' '}
+								displays links to InitialDev's social accounts.
+							</p>
+							<br />
+						</div>
+					);
 					break;
 				case 'about':
 					newOutput = (
 						<p>about: Shows information about the website</p>
 					);
 					break;
-				case 'projects':
-					newOutput = (
-						<p>projects: Shows a list of current projects</p>
-					);
-					break;
 				case 'team':
 					newOutput = <p>team: Shows a list of team members</p>;
+					break;
+				case 'contact':
+					newOutput = <p>contact: Shows contact information</p>;
+					break;
+				case 'social':
+					newOutput = <p>social: Shows social media links</p>;
 					break;
 				default:
 					newOutput = (
@@ -60,23 +97,29 @@ const Terminal = () => {
 
 			setOutput([...output, newOutput]);
 			setInput('');
+			setTimeout(() => {
+				outputRef.current.lastChild.scrollIntoView({
+					behavior: 'smooth',
+				});
+			}, 10);
 		}
 	};
 
 	return (
-		<div className="bg-gray-900 text-white px-12">
+		<div className="relative bg-gray-900 text-white px-12">
 			<div
 				id="output"
-				className="overflow-y-scroll scrollbar-hide pt-2.5"
+				className="max-h-[32rem] overflow-y-scroll overscroll-contain scrollbar-hide mt-2.5 w-full"
+				ref={outputRef}
 			>
 				{output.map((item, index) => {
 					return <div key={index}>{item}</div>;
 				})}
 			</div>
-			<div className="inline-block w-full">
+			<div className="inline-block w-full pt-2.5">
 				<span>guest@initial.dev:~$</span>
 				<input
-					className="border-0 pl-2.5 pt-2.5 bg-gray-900 text-white focus:ring-0 focus:outline-none"
+					className="border-0 pl-2.5 w-auto bg-gray-900 text-white focus:ring-0 focus:outline-none"
 					type="text"
 					value={input}
 					onChange={handleInput}

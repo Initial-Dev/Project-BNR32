@@ -14,6 +14,7 @@ const Header = () => {
      *      This Website is a work in progress. Please check back later for updates.      
      *      For now, you can enjoy this terminal.
      * 
+     *      Type 'help' for a list of commands.
      */`;
 	return (
 		<div className="self-center">

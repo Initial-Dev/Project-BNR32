@@ -3,8 +3,24 @@ module.exports = {
 	content: ['./src/**/*.{js,jsx,ts,tsx}'],
 	theme: {
 		extend: {
+			keyframes: {
+				blink: {
+					'0%': {
+						opacity: 1,
+					},
+					'50%': {
+						opacity: 0,
+					},
+					'100%': {
+						opacity: 1,
+					},
+				},
+			},
+			animations: {
+				blink: 'blink 1s infinite',
+			},
 			dropShadow: {
-				cmd: '0px 0px 10px 5px rgba(255,0,0,0.5)',
+				cmd: '0 0 5px #ff0000',
 			},
 		},
 	},
