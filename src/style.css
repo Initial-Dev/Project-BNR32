@@ -7,3 +7,8 @@
 * {
 	font-family: 'Fira Code', monospace !important;
 }
+
+::selection {
+	background: white;
+	color: #111827;
+}
